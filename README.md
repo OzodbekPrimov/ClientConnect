@@ -22,6 +22,7 @@
 - Docker va Docker Compose
 - Swagger (drf-yasg)
 - Djoser
+- github CI
 ## Installation
 
 ### 1. Clone the Repository
