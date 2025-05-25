@@ -1,19 +1,20 @@
-# ClientConnect - Lead Management API
+# ClientConnect - Lead Management System
 
-This project is a lead management system designed for attorneys. Built with Django REST Framework (DRF), the API allows creating leads, listing leads, retrieving individual lead details, and updating lead status. It uses PostgreSQL as the database and supports Docker for easy deployment.
+**ClientConnect** is a lead management system designed for attorneys to streamline client onboarding. Built with Django REST Framework (DRF), this API allows users to create leads, list leads, view lead details, update lead statuses, and manage resumes. The project uses PostgreSQL as the database and supports Docker for easy deployment.
 
 ## Features
-- **Create a New Lead**: Public endpoint (`POST /api/leads/`) to submit lead forms and confirm submission.
-- **Email Notifications**: Sends a confirmation email to the client and a notification to the admin upon form submission.
-- **List Leads**: Retrieve a list of leads for authenticated users (`GET /api/leads/`).
-- **Lead Details**: View details of a specific lead (`GET /api/leads/<id>/`).
-- **Update Lead Status**: Update the status of a lead (`PATCH /api/leads/<id>/`).
-- **Swagger Documentation**: API documentation available via Swagger (`/swagger/`).
-- **Admin Panel**: Manage leads through Django's admin panel (`/admin/`).
-- **Docker Support**: Easily deploy the project using Docker and Docker Compose.
-- **Tests**: Automated tests for API endpoints.
+- **Create Leads**: Public endpoint (`POST /api/leads/`) to submit lead forms, including resume uploads.
+- **Email Notifications**: Sends confirmation emails to clients and notifies admins of new leads (with attached resumes).
+- **List Leads**: Authenticated users can view a list of leads (`GET /api/leads/list/`).
+- **Lead Details**: Retrieve details of a specific lead (`GET /api/leads/<id>/`).
+- **Update Lead Status**: Update the status of a lead (`PATCH /api/leads/<id>/update/`)—only the `state` field can be updated.
+- **Resume Access**: Admins can view or download resumes via the admin panel or API (`GET /api/leads/<id>/resume/`).
+- **Swagger Documentation**: API documentation available at `/swagger/`.
+- **Admin Panel**: Manage leads and download resumes at `/admin/`.
+- **Docker Support**: Deploy the project easily using Docker and Docker Compose.
+- **Automated Tests**: Includes tests for API endpoints.
 
-## Technologies
+## Technologies Used
 - Python 3.11
 - Django 5.2.1
 - Django REST Framework 3.16.0
