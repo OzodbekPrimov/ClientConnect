@@ -15,6 +15,9 @@ class Lead(models.Model):
     state = models.CharField(max_length=20, choices=STATE_CHOICES, default="PENDING")
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ('-created_at',)
+
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
