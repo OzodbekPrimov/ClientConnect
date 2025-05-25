@@ -9,18 +9,39 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        env:
+          POSTGRES_DB: clientconnect.db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ozodbek2006
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DATABASE_URL: postgres://postgres:ozodbek2006@postgres:5432/clientconnect.db
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3  # Yangilangan versiya
     - name: Set up Python 3.11
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4  # Yangilangan versiya
       with:
         python-version: 3.11
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    - name: Run migrations
+      run: |
+        python manage.py migrate
     - name: Run tests
-      run: python manage.py test
+      run: |
+        python manage.py test leads
